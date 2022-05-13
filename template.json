@@ -1,0 +1,22 @@
+{
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "hc-2e018205090644c5a54c3a62b11",
+      "source_image": "ubuntu-2004-focal-v20220419",
+      "ssh_username": "ubuntu",
+      "zone": "europe-central2-b",
+      "machine_type": "n1-standard-2",
+      "disk_size": "60"
+    }
+  ],
+  "provisioners": [
+    {
+      "scripts": ["scripts/packages.sh"
+      ],
+      "timeout": "10m",
+      "type": "shell",
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E {{ .Path }}"
+    }
+  ]
+}
